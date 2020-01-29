@@ -1,6 +1,5 @@
 class Ball {
   
-int count  = 0;
 float x; float y;
 float dx; float dy;
 int radius;
@@ -21,8 +20,9 @@ void move(){
 
 void updateSpeed()
 {
-  dx = dx*(1+(millis()-time)/10000);
-  dy = dy*(1+(millis()-time)/10000);
+  float mul = (millis()-time)/15000;
+  dx = dx*(1+mul)/mul;
+  dy = dy*(1+mul)/mul;
   println(dx+ "  " +dy);
 }
 void draw(){
@@ -57,8 +57,6 @@ boolean collide(Player tp)
   if(y+radius >= tp.ypos&&y-radius<tp.ypos+PADDLEHEIGHT &&
       x >=tp.xpos && x <=tp.xpos+PADDLEWIDTH)
   {
-      count++;
-      println("collided! "+count);
       vel = (mouseX - pmouseX)/7;
       dy = dy + Math.abs(vel);
       dy = -dy;

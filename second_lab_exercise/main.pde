@@ -8,6 +8,7 @@ PFont f;
 int res;
 boolean plC = false, cC =true;
 int time = millis();
+int count = 1;
 void settings(){
 size(SCREENX, SCREENY);
 }
@@ -26,7 +27,9 @@ void mousePressed()
 {
   if(stop)
   {
-    time = 0;
+    computerPlayer.speed = 2;
+    time = millis();
+    count = 1;
     theBall.dx = random(1,2);
     theBall.dy = random(1,2);
     stop = false;
@@ -57,8 +60,12 @@ if(!gameover)
 {
   if(!stop)
   {
-    theBall.updateSpeed();
-    computerPlayer.updateSpeed();
+    if((millis() - time)/15000>=count)
+    {
+      theBall.updateSpeed();
+      computerPlayer.updateSpeed();
+      count++;
+    }
     theBall.move();
     thePlayer.score(Math.round(theBall.y));
     computerPlayer.score(Math.round(theBall.y));
@@ -73,7 +80,9 @@ if(!gameover)
     computerPlayer.computerMove((int)theBall.x);
     thePlayer.move(mouseX);
   }
+  fill(theBall.ballColor);
   text("Player " + thePlayer.wins +":"+computerPlayer.wins +" Computer",20,MARGIN + 2 * PADDLEHEIGHT);
+  text("Current Speed: " + count,20,MARGIN + 3 * PADDLEHEIGHT);
   
   theBall.collideWall();
   if(cC)
@@ -93,6 +102,7 @@ if(!gameover)
 else
 {
   textFont(f);
+  fill(theBall.ballColor);
   if(res==1)
   {
     text("Player won", SCREENX/3, SCREENY/2);

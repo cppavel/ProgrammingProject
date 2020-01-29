@@ -3,7 +3,7 @@ int xpos; int ypos;
 color paddlecolor = color(50);
 boolean isPlayer;
 int wins = 0;
-int speed = 1;
+int speed = 2;
 Player(int screen_y,boolean xui)
 {
   isPlayer = xui;
@@ -41,7 +41,9 @@ void computerMove(int ball_position)
 
 void updateSpeed()
 {
-  speed = speed*(1+(millis()-time)/10000);
+  int mul = (millis()-time)/15000;
+  speed = speed*(1+mul)/mul;;
+  println("cpu speed "+speed);
 }
 
 void draw()
