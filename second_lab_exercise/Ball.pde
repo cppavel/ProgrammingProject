@@ -18,6 +18,13 @@ Ball()
 void move(){
   x = x+dx; y = y+dy;
 }
+
+void updateSpeed()
+{
+  dx = dx*(1+(millis()-time)/10000);
+  dy = dy*(1+(millis()-time)/10000);
+  println(dx+ "  " +dy);
+}
 void draw(){
   fill(ballColor);
   ellipse(int(x), int(y), radius,radius);
@@ -52,10 +59,10 @@ boolean collide(Player tp)
   {
       count++;
       println("collided! "+count);
-      vel = (mouseX - pmouseX)/5;
+      vel = (mouseX - pmouseX)/7;
+      dy = dy + Math.abs(vel);
       dy = -dy;
       dx = dx + vel;
-      println(vel + " " + dx+ " "+ dy);
       return true;
   }
   

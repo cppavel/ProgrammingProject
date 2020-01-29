@@ -7,6 +7,7 @@ PFont myFont;
 PFont f;
 int res;
 boolean plC = false, cC =true;
+int time = millis();
 void settings(){
 size(SCREENX, SCREENY);
 }
@@ -25,6 +26,7 @@ void mousePressed()
 {
   if(stop)
   {
+    time = 0;
     theBall.dx = random(1,2);
     theBall.dy = random(1,2);
     stop = false;
@@ -55,6 +57,8 @@ if(!gameover)
 {
   if(!stop)
   {
+    theBall.updateSpeed();
+    computerPlayer.updateSpeed();
     theBall.move();
     thePlayer.score(Math.round(theBall.y));
     computerPlayer.score(Math.round(theBall.y));

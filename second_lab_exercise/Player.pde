@@ -3,6 +3,7 @@ int xpos; int ypos;
 color paddlecolor = color(50);
 boolean isPlayer;
 int wins = 0;
+int speed = 1;
 Player(int screen_y,boolean xui)
 {
   isPlayer = xui;
@@ -30,13 +31,19 @@ void computerMove(int ball_position)
 {
   if(ball_position-(xpos+PADDLEWIDTH/2)<0)
   {
-    xpos = xpos - 2;
+    xpos = xpos - speed ;
   }
   else if (ball_position-(xpos+PADDLEWIDTH/2)>0)
   {
-    xpos = xpos +  2;
+    xpos = xpos + speed ;
   }
 }
+
+void updateSpeed()
+{
+  speed = speed*(1+(millis()-time)/10000);
+}
+
 void draw()
 {
   fill(paddlecolor);
