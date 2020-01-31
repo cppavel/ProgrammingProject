@@ -13,7 +13,8 @@ void settings(){
 size(SCREENX, SCREENY);
 }
 void setup(){
-  
+
+frameRate(60);
 myFont  = loadFont("Calibri-18.vlw");
 f = loadFont("Calibri-36.vlw");
 computerPlayer = new Player(MARGIN,false);

@@ -57,11 +57,19 @@ boolean collide(Player tp)
   if(y+radius >= tp.ypos&&y-radius<tp.ypos+PADDLEHEIGHT &&
       x >=tp.xpos && x <=tp.xpos+PADDLEWIDTH)
   {
+    
+    if(tp.isPlayer)
+    {
       vel = (mouseX - pmouseX)/7;
-      dy = dy + Math.abs(vel);
-      dy = -dy;
-      dx = dx + vel;
-      return true;
+    }
+    else
+    {
+      vel =0;
+    }
+    dy = dy + Math.abs(vel);
+    dy = -dy;
+    dx = dx + vel;
+    return true;
   }
   
   return false;
