@@ -16,9 +16,9 @@ class Alien
   boolean movesInSineFashion = false;
   
   
-  int sin(int x,int y)
+  int sin(int x)
   {
-     return y + (int)(3*Math.sin(6*Math.PI*x*1.0/SCREENX));
+     return (int)(25*Math.sin(6*Math.PI*x*1.0/SCREENX));
   }
   
   Alien(int x, int y, boolean isSine)
@@ -38,11 +38,25 @@ class Alien
   {
     if(!exploaded)
     {
-      image(currentPicture,x,y,ALIENSIZEX, ALIENSIZEY);
+      if(movesInSineFashion)
+      {
+        image(currentPicture,x,y +sin(x),ALIENSIZEX, ALIENSIZEY);
+      }
+      else
+      {
+        image(currentPicture,x,y,ALIENSIZEX, ALIENSIZEY);
+      }     
     }
     else
     {
-      image(explosion,x,y,ALIENSIZEX, ALIENSIZEY);
+      if(movesInSineFashion)
+      {
+        image(explosion,x,y +sin(x),ALIENSIZEX, ALIENSIZEY);
+      }
+      else
+      {   
+        image(explosion,x,y,ALIENSIZEX, ALIENSIZEY);       
+      } 
     }
   }
   
@@ -55,14 +69,10 @@ class Alien
     }
     if(right)
     {
-      if(movesInSineFashion)
-          y = sin(x,y);
-      x = x + speed; //<>//
+      x = x + speed;  //<>//
     }
     if(left)
     {
-      if(movesInSineFashion)
-          y = sin(x,y);
       x = x - speed;
     }
     if(down)
