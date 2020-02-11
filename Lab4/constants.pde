@@ -1,0 +1,17 @@
+final int SCREENX = 600;
+final int SCREENY = 600;
+final int ALIENSIZEX = 50;
+final int ALIENSIZEY = 50;
+final int N = 10;
+final int step = 75;
+final int alienTypes = 4;
+final int PLAYERSIZEX = 100;
+final int PLAYERSIZEY = 50;
+final int MARGIN  = 15;
+final int CORRECTION = 15;
+final int DEFAULT_BULLET_SIZE_X = 25;
+final int DEFAULT_BULLET_SIZE_Y = 25;
+final int POWER_UP_SIZE_X = 50;
+final int POWER_UP_SIZE_Y = 50;
+final int SPEED = 2;
+final int POWERUPS = 3;
